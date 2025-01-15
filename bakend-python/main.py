@@ -1,14 +1,29 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+import models
+from db import engine
+import posts
 
 app = FastAPI()
 
-modèles.Base.metadata.create_all( bind = moteur)
+origins = [
+    "http://localhost:5173",  
+]
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# Ajout du middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  
+    allow_credentials=True,  
+    allow_methods=["*"],  
+    allow_headers=["*"], 
+)
+
+# Création des tables dans la base de données (si elles n'existent pas déjà)
+models.Base.metadata.create_all(bind=engine)
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+
+# Inclusion des routes définies dans posts.router
+app.include_router(posts.router)
