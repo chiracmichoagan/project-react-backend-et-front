@@ -1,35 +1,19 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-import Header from './components/Header.jsx';
-import Home from './components/Home.jsx';
-import About from './components/About.jsx';
-import App from "./App.jsx";
+import React from "react";
+import ReactDOM from "react-dom/client"; // Importer createRoot depuis react-dom/client
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <>
-        <App />
-      </>
-    ),
-  },
-  // {
-  //   path: "/about",
-  //   element: (
-  //     <>
-  //       <Header />
-  //       <About />
-  //     </>
-  //   ),
-  // },
-  // Ajoutez d'autres routes ici
-]);
+// Sélectionner l'élément racine de votre DOM
+const rootElement = document.getElementById("root");
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+// Créer une racine avec createRoot
+const root = ReactDOM.createRoot(rootElement);
+
+// Rendre l'application
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
