@@ -19,7 +19,7 @@ const updateTodo = async (id, data) => {
   return response;
 };
 
-const removeTodo = async id => {
+const removeTodo = async (id) => {
   const response = await api.delete(`/todos/${id}`);
   return response;
 };
