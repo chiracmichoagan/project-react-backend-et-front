@@ -12,6 +12,7 @@ router = APIRouter(
     tags=['Todos']
 )
 
+
 @router.get('/', response_model=List[schemas.TodoBase])
 def get_todos(db: Session = Depends(get_db)):
 
@@ -65,4 +66,11 @@ def update_todo(update_todo:schemas.TodoBase, id:int, db:Session = Depends(get_d
     db.commit()
 
 
-    return  todo.first()
+    return  todo.first() 
+
+def create_book (db: Session, book: schemas.BookBase):
+    db_book = models.Book(title=book.title, author_id=book.author_id, content=book.content)
+    db.add(db_book)
+    db.commit()
+    db.refresh(db_book)
+    return db_book
