@@ -69,7 +69,7 @@ def update_todo(update_todo:schemas.TodoBase, id:int, db:Session = Depends(get_d
     return  todo.first() 
 
 def create_book (db: Session, book: schemas.BookBase):
-    db_book = models.Book(title=book.title, author_id=book.author_id, content=book.content)
+    db_book = models.Livre(title=book.title, author_id=book.author_id, content=book.content)
     db.add(db_book)
     db.commit()
     db.refresh(db_book)
