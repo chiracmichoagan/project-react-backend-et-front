@@ -6,7 +6,7 @@ import AddTodo from "./components/addTodo";
 import TodoList from "./components/TodoList";
 
 
-export default function App() {
+const App: React.FC = () => {
   return (
     <div>
       <nav className="bg-gray-800">
@@ -87,3 +87,5 @@ export default function App() {
       </div>
     </div>);
 }
+
+export default App;

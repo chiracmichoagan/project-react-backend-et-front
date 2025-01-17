@@ -196,6 +196,12 @@ export default function TodoList() {
                 >
                   Modifier
                 </button>
+                <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        task={currentTask}
+        onSave={updateTask}
+      />
                 <button
                   onClick={() => deleteTask(task.id)}
                   className="bg-red-500 text-white rounded px-3 py-1 hover:bg-red-600 transition-colors duration-300"
@@ -206,12 +212,7 @@ export default function TodoList() {
             </div>
           ))}
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        task={currentTask}
-        onSave={updateTask}
-      />
+
       <div className="flex justify-center my-4">
         {[...Array(totalPages)].map((_, index) => (
           <button
